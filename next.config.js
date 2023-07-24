@@ -9,6 +9,26 @@ const nextConfig = {
     locales: ['en-US'],
     defaultLocale: 'en-US',
   },
+  rewrites: () => {
+    return [
+      {
+        source: '/(.*)sitemap.xml',
+        destination: '/api/sitemap-proxy',
+      },
+      {
+        source: '/sitemap(.*).xml',
+        destination: '/api/sitemap-proxy',
+      },
+      {
+        source: '/XMLData/(.*).xml',
+        destination: '/api/sitemap-proxy',
+      },
+      {
+        source: '/sitemap/(.*).xml',
+        destination: '/api/sitemap-proxy',
+      },
+    ]
+  },
   webpack: (config, { isServer, dev }) => {
     // https://github.com/vercel/next.js/discussions/11267#discussioncomment-2479112
     // camel-case style names from css modules
